@@ -1,5 +1,17 @@
 import express from "express";
-const app = express();
-export default app;
+import employeesRouter from "#api/employees";
 
-// TODO: this file!
+const app = express();
+
+//Middleware
+app.use(express.json());
+
+//Root route
+app.get("/", (req, res) => {
+  res.send("Welcome to the Fullstack Employees API.");
+});
+
+// Employees routes
+app.use("/employees", employeesRouter);
+
+export default app;
